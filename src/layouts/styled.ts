@@ -5,6 +5,14 @@ export const LayoutsWrapper = styled.div`
     
     .layouts {
         height: 100%;
+
+        .sider {
+            .logo {
+                height: 32px;
+                margin: 16px;
+                background-color: #4D5C6A;
+            }
+        }
         
         .header {
             display: flex;
