@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 
-interface Iprops {
+export interface Iprops {
     children: ReactElement
 }
 
