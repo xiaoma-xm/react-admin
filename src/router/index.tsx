@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import Layouts from "@/layouts";
+import LayoutsAuth from "@/components/layoutsAuth";
 
 // 懒加载函数
 function lazyLoad(path: string) {
@@ -17,7 +18,9 @@ function lazyLoad(path: string) {
 const routes = [
     {
         path: '/',
-        element: <Layouts />
+        element: <LayoutsAuth>
+            <Layouts />
+        </LayoutsAuth>
     },
     {
         path: '/login',
