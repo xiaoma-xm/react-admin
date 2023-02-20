@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, type InputRef } from 'antd';
 import { LoginWrapper } from './styled';
+import { loginApi } from '@/api/login';
 
-interface Ival {
+export interface Ival {
   username: string,
   password: string
 }
@@ -21,11 +23,19 @@ const rules = {
 
 // 组件
 function Login() {
+  const navigate = useNavigate();
   const inputRef = useRef<InputRef>(null);
 
   // 登录的回调处理
   function submitHandler(val: Ival) {
-    console.log(val);
+    loginApi(val).then(res => {
+      // 将返回的登录数据暂时存储在本地浏览器
+      localStorage.setItem('username', res.data.username);
+      // 跳转到主页
+      navigate('/');
+    }).catch(err => {
+      console.log(err);
+    })
   }
 
   useEffect(() => {
