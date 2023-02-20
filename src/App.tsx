@@ -1,11 +1,8 @@
 import './App.css';
+import { useRenderRoutes } from './router';
 
 function App() {
-  return (
-    <div>
-      App
-    </div>
-  );
+  return useRenderRoutes()
 }
 
 export default App;
