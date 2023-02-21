@@ -36,7 +36,11 @@ function createNavMenu(routes: IRoutes[]): any {
     })
 }
 
-function LayoutSider() {
+interface IProps {
+    collapsed: boolean
+}
+
+function LayoutSider(props: IProps) {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -57,7 +61,7 @@ function LayoutSider() {
     }, []);
 
     return (
-        <Sider className="sider">
+        <Sider className="sider" collapsed={props.collapsed}>
             <div className="logo"></div>
             <Menu
                 selectedKeys={[location.pathname]}

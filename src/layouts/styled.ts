@@ -20,6 +20,15 @@ export const LayoutsWrapper = styled.div`
             padding: 0 20px;
             background-color: #fff;
 
+            /* 收起展开导航菜单切换的图标 */
+            .toggleMenuIcon {
+                font-size: 20px;
+
+                & span:hover {
+                    color: #1677FF;
+                }
+            }
+
             .aboutUser {
                 display: flex;
                 align-items: center;

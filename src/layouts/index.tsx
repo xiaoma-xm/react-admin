@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import { LayoutsWrapper } from "./styled";
@@ -6,13 +7,15 @@ import LayoutHeader from "./layoutHeader";
 const { Content } = Layout;
 
 function Layouts() {
+  const [collapsed, setCollapsed] = useState(false);
+  
   return (
     <LayoutsWrapper>
       <Layout className="layouts">
-        <LayoutSider />
+        <LayoutSider collapsed={collapsed} />
 
         <Layout>
-          <LayoutHeader />
+          <LayoutHeader collapsed={collapsed} setCollapsed={setCollapsed} />
 
           <Content className="content">
             <div className="contentMain">
