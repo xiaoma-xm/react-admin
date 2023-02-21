@@ -10,13 +10,14 @@ import {
 import Layouts from "@/layouts";
 import LayoutsAuth from "@/components/layoutsAuth";
 import LoginAuth from "@/components/loginAuth";
+import Loading from "@/components/loading";
 
 // 懒加载函数
 function lazyLoad(path: string) {
     const Comp = lazy(() => import(`@/pages/${path}`));
 
     return (
-        <Suspense fallback={'Loading...'}>
+        <Suspense fallback={<Loading />}>
             <Comp />
         </Suspense>
     )
