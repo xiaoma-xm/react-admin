@@ -11,7 +11,8 @@ const items: MenuProps['items'] = [
         label: (
             <a href="" onClick={(e) => {
                 e.preventDefault();
-            }}>回到首页</a>
+                navigate('/home');
+            }}>回家</a>
         ),
     },
     {

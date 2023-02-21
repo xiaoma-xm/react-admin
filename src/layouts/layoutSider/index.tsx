@@ -60,7 +60,7 @@ function LayoutSider() {
         <Sider className="sider">
             <div className="logo"></div>
             <Menu
-                defaultSelectedKeys={[location.pathname]}
+                selectedKeys={[location.pathname]}
                 defaultOpenKeys={openKeysArr}
                 mode="inline"
                 theme="dark"
