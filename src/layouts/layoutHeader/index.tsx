@@ -17,7 +17,8 @@ const items: MenuProps['items'] = [
     {
         key: '2',
         label: (
-            <a href="" onClick={() => {
+            <a href="" onClick={(e) => {
+                e.preventDefault();
                 localStorage.clear();
                 navigate('/login');
             }}>

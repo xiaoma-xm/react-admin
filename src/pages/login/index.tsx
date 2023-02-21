@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button, type InputRef } from 'antd';
+import { Form, Input, Button, type InputRef, message } from 'antd';
 import { LoginWrapper } from './styled';
 import { loginApi } from '@/api/login';
 
@@ -33,6 +33,7 @@ function Login() {
       localStorage.setItem('username', res.data.username);
       // 跳转到主页
       navigate('/');
+      message.success('登录成功');
     }).catch(err => {
       console.log(err);
     })
