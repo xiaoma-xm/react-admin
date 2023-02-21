@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout, Menu } from "antd";
 import type { MenuProps } from 'antd';
 import { menuRoutes } from "@/router";
@@ -60,6 +60,7 @@ function createNavMenu(routes: IRoutes[]):any {
 
 function LayoutSider() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const items = useMemo(() => {
         return createNavMenu(menuRoutes());
@@ -69,7 +70,7 @@ function LayoutSider() {
         <Sider className="sider">
             <div className="logo"></div>
             <Menu
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={[location.pathname]}
                 defaultOpenKeys={['sub1']}
                 mode="inline"
                 theme="dark"
