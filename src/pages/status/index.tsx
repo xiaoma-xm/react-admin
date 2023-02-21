@@ -1,9 +1,7 @@
-
+import { Outlet } from "react-router-dom";
 
 function Status() {
-  return (
-    <div>Status</div>
-  )
+  return <Outlet />
 }
 
 export default Status

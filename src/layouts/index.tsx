@@ -1,4 +1,5 @@
-import { Layout } from "antd"
+import { Layout } from "antd";
+import { Outlet } from "react-router-dom";
 import { LayoutsWrapper } from "./styled";
 import LayoutSider from "./layoutSider";
 import LayoutHeader from "./layoutHeader";
@@ -14,7 +15,9 @@ function Layouts() {
           <LayoutHeader />
 
           <Content className="content">
-            <div className="contentMain">Content</div>
+            <div className="contentMain">
+              <Outlet />
+            </div>
           </Content>
         </Layout>
       </Layout>

@@ -1,4 +1,5 @@
-import { useMemo } from 'react'; 
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout, Menu } from "antd";
 import type { MenuProps } from 'antd';
 import { menuRoutes } from "@/router";
@@ -58,6 +59,7 @@ function createNavMenu(routes: IRoutes[]):any {
 // ];
 
 function LayoutSider() {
+    const navigate = useNavigate();
 
     const items = useMemo(() => {
         return createNavMenu(menuRoutes());
@@ -73,6 +75,9 @@ function LayoutSider() {
                 theme="dark"
                 // inlineCollapsed={collapsed}
                 items={items}
+                onClick={({ key }) => {
+                    navigate(key);
+                }}
             />
         </Sider>
     )
