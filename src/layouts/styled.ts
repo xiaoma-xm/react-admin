@@ -23,17 +23,25 @@ export const LayoutsWrapper = styled.div`
             /* 收起展开导航菜单切换的图标 */
             .toggleMenuIcon {
                 font-size: 20px;
-
+                
                 & span:hover {
                     color: #1677FF;
                 }
             }
-
+            
             .aboutUser {
                 display: flex;
                 align-items: center;
+                
+                .fullScreenIcon {
+                    font-size: 20px;
 
-                .username {
+                    & span:hover {
+                        color: #1677FF;
+                    }
+                }
+
+                & > div {
                     margin-right: 10px;
                 }
             }
