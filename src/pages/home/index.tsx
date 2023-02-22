@@ -2,35 +2,31 @@ import { useRef, useEffect } from "react";
 import { Col, Row } from "antd";
 import { HomeWrapper } from "./styled";
 import * as echarts from 'echarts';
+import chartOptions from "@/utils/chartOptions";
 
 function Home() {
   const barChartRef = useRef<HTMLDivElement>(null);
+  const lineChartRef = useRef<HTMLDivElement>(null);
+  const pointChartRef = useRef<HTMLDivElement>(null);
+  const riverChartRef = useRef<HTMLDivElement>(null);
+  const stackChartRef = useRef<HTMLDivElement>(null);
+  const pieChartRef = useRef<HTMLDivElement>(null);
+  const rainbowChartRef = useRef<HTMLDivElement>(null);
+
+  const createCharts = (chartContainer: HTMLDivElement, options: any) => {
+    // echarts初始化容器
+    const chart = echarts.init(chartContainer);
+    chart.setOption(options);
+  }
 
   useEffect(() => {
-    // echarts初始化容器
-    const chart = echarts.init(barChartRef.current as HTMLDivElement);
-    // 图表配置项
-    let options = {
-      title: {
-        text: "衣服和鞋子",
-      },
-      tooltip: {},
-      legend: {
-        data: ["销量"],
-      },
-      xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-      },
-      yAxis: {},
-      series: [
-        {
-          name: "销量",
-          type: "bar",
-          data: [5, 20, 36, 10, 10, 20],
-        },
-      ],
-    };
-    chart.setOption(options);
+    createCharts(barChartRef.current as HTMLDivElement, chartOptions.barOptions);
+    createCharts(lineChartRef.current as HTMLDivElement, chartOptions.lineOptions);
+    createCharts(pointChartRef.current as HTMLDivElement, chartOptions.pointOptions);
+    createCharts(riverChartRef.current as HTMLDivElement, chartOptions.riverOptions);
+    createCharts(stackChartRef.current as HTMLDivElement, chartOptions.stackOptions);
+    createCharts(pieChartRef.current as HTMLDivElement, chartOptions.pieOptions);
+    createCharts(rainbowChartRef.current as HTMLDivElement, chartOptions.rainbowOptions);
   }, []);
 
   return (
@@ -40,28 +36,28 @@ function Home() {
           <div className="barChart" ref={barChartRef}>图表1</div>
         </Col>
         <Col className="col mr-10" span={6}>
-          <div>图表2</div>
+          <div className="lineChart" ref={lineChartRef}>图表2</div>
         </Col>
         <Col className="col mr-10" span={6}>
-          <div>图表3</div>
+          <div className="pointChart" ref={pointChartRef} >图表3</div>
         </Col>
         <Col className="col" span={5}>
-          <div>图表4</div>
+          <div className="riverChart" ref={riverChartRef}>图表4</div>
         </Col>
       </Row>
 
       <Row className="mb-10">
         <Col className="col mr-10" span={14}>
-          <div>图表5</div>
+          <div className="stackChart" ref={stackChartRef}>图表5</div>
         </Col>
         <Col className="col" span={9}>
-          <div>图表6</div>
+          <div className="pieChart" ref={pieChartRef}>图表6</div>
         </Col>
       </Row>
 
       <Row>
         <Col className="col" span={24}>
-          <div>图表7</div>
+          <div className="rainbowChart" ref={rainbowChartRef} >图表7</div>
         </Col>
       </Row>
     </HomeWrapper>
