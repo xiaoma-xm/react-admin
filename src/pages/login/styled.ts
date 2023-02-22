@@ -11,5 +11,9 @@ export const LoginWrapper = styled.div`
             text-align: center;
             margin: 20px 0;
         }
+
+        .forgotPass {
+            float: right;
+        }
     }
 `;

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, type InputRef, message } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginWrapper } from './styled';
 import { loginApi } from '@/api/login';
 
@@ -49,11 +50,11 @@ function Login() {
         <h1 className='loginTitle'>React Admin</h1>
 
         <Form.Item name='username' rules={rules.username}>
-          <Input ref={inputRef} placeholder='请输入用户名' />
+          <Input prefix={<UserOutlined style={{ color: '#ccc' }} />} ref={inputRef} placeholder='请输入用户名' />
         </Form.Item>
 
         <Form.Item name='password' rules={rules.password}>
-          <Input.Password placeholder='请输入密码' />
+          <Input.Password prefix={<LockOutlined style={{ color: '#ccc' }} />} placeholder='请输入密码' />
         </Form.Item>
 
         <Form.Item>
