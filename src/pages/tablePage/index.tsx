@@ -85,7 +85,7 @@ const data: DataType[] = [
 
 const TablePage: React.FC = () => (
   <>
-    <h2 style={{ marginBottom: 20 }}>基本用法</h2>
+    <h1 style={{ marginBottom: 20 }}>基本用法</h1>
     <Table columns={columns} dataSource={data} />
   </>
 )
