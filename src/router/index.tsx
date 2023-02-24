@@ -58,14 +58,14 @@ const routes: IRoutes[] = [
                 icon: <DatabaseOutlined />
             },
             {
-                path: '/form',
-                element: lazyLoad('form'),
+                path: '/formPage',
+                element: lazyLoad('formPage'),
                 title: '表单页',
                 icon: <EditOutlined />
             },
             {
-                path: '/table',
-                element: lazyLoad('table'),
+                path: '/tablePage',
+                element: lazyLoad('tablePage'),
                 title: '表格页',
                 icon: <TableOutlined />
             },
