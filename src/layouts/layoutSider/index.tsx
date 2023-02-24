@@ -37,7 +37,8 @@ function createNavMenu(routes: IRoutes[]): any {
 }
 
 interface IProps {
-    collapsed: boolean
+    collapsed: boolean,
+    setCollapsed: Function
 }
 
 function LayoutSider(props: IProps) {
@@ -61,7 +62,9 @@ function LayoutSider(props: IProps) {
     }, []);
 
     return (
-        <Sider className="sider" collapsed={props.collapsed}>
+        <Sider className="sider" breakpoint='md' onBreakpoint={broken => {
+            props.setCollapsed(broken);
+        }} collapsed={props.collapsed}>
             <div className="logo"></div>
             <Menu
                 selectedKeys={[location.pathname]}

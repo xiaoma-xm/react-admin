@@ -12,7 +12,7 @@ function Layouts() {
   return (
     <LayoutsWrapper>
       <Layout className="layouts">
-        <LayoutSider collapsed={collapsed} />
+        <LayoutSider collapsed={collapsed} setCollapsed={setCollapsed} />
 
         <Layout>
           <LayoutHeader collapsed={collapsed} setCollapsed={setCollapsed} />
