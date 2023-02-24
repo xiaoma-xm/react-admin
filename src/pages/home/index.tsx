@@ -32,25 +32,25 @@ function Home() {
   return (
     <HomeWrapper>
       <Row className="mb-10">
-        <Col className="col mr-10" span={6}>
+        <Col className="col" sm={24} md={12} xl={6}>
           <div className="barChart" ref={barChartRef}>图表1</div>
         </Col>
-        <Col className="col mr-10" span={6}>
+        <Col className="col" sm={24} md={12} xl={6}>
           <div className="lineChart" ref={lineChartRef}>图表2</div>
         </Col>
-        <Col className="col mr-10" span={6}>
+        <Col className="col" sm={24} md={12} xl={6}>
           <div className="pointChart" ref={pointChartRef} >图表3</div>
         </Col>
-        <Col className="col" span={5}>
+        <Col className="col" sm={24} md={12} xl={6}>
           <div className="riverChart" ref={riverChartRef}>图表4</div>
         </Col>
       </Row>
 
       <Row className="mb-10">
-        <Col className="col mr-10" span={14}>
+        <Col className="col" sm={24} xl={14}>
           <div className="stackChart" ref={stackChartRef}>图表5</div>
         </Col>
-        <Col className="col" span={9}>
+        <Col className="col" sm={24} xl={10}>
           <div className="pieChart" ref={pieChartRef}>图表6</div>
         </Col>
       </Row>
