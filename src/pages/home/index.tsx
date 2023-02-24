@@ -17,40 +17,52 @@ function Home() {
     // echarts初始化容器
     const chart = echarts.init(chartContainer);
     chart.setOption(options);
+
+    return chart;
   }
 
   useEffect(() => {
-    createCharts(barChartRef.current as HTMLDivElement, chartOptions.barOptions);
-    createCharts(lineChartRef.current as HTMLDivElement, chartOptions.lineOptions);
-    createCharts(pointChartRef.current as HTMLDivElement, chartOptions.pointOptions);
-    createCharts(riverChartRef.current as HTMLDivElement, chartOptions.riverOptions);
-    createCharts(stackChartRef.current as HTMLDivElement, chartOptions.stackOptions);
-    createCharts(pieChartRef.current as HTMLDivElement, chartOptions.pieOptions);
-    createCharts(rainbowChartRef.current as HTMLDivElement, chartOptions.rainbowOptions);
+    const chart1 = createCharts(barChartRef.current as HTMLDivElement, chartOptions.barOptions);
+    const chart2 = createCharts(lineChartRef.current as HTMLDivElement, chartOptions.lineOptions);
+    const chart3 = createCharts(pointChartRef.current as HTMLDivElement, chartOptions.pointOptions);
+    const chart4 = createCharts(riverChartRef.current as HTMLDivElement, chartOptions.riverOptions);
+    const chart5 = createCharts(stackChartRef.current as HTMLDivElement, chartOptions.stackOptions);
+    const chart6 = createCharts(pieChartRef.current as HTMLDivElement, chartOptions.pieOptions);
+    const chart7 = createCharts(rainbowChartRef.current as HTMLDivElement, chartOptions.rainbowOptions);    
+
+    window.onresize = () => {
+      chart1.resize();
+      chart2.resize();
+      chart3.resize();
+      chart4.resize();
+      chart5.resize();
+      chart6.resize();
+      chart7.resize();
+    }
   }, []);
 
   return (
     <HomeWrapper>
       <Row className="mb-10">
-        <Col className="col" sm={24} md={12} xl={6}>
+        <Col className="col" xs={24} md={12} xl={6}>
           <div className="barChart" ref={barChartRef}>图表1</div>
         </Col>
-        <Col className="col" sm={24} md={12} xl={6}>
+        <Col className="col" xs={24} md={12} xl={6}>
           <div className="lineChart" ref={lineChartRef}>图表2</div>
         </Col>
-        <Col className="col" sm={24} md={12} xl={6}>
+        <Col className="col" xs={24} md={12} xl={6}>
           <div className="pointChart" ref={pointChartRef} >图表3</div>
         </Col>
-        <Col className="col" sm={24} md={12} xl={6}>
+        <Col className="col" xs={24} md={12} xl={6}>
           <div className="riverChart" ref={riverChartRef}>图表4</div>
         </Col>
       </Row>
 
       <Row className="mb-10">
-        <Col className="col" sm={24} xl={14}>
+        <Col className="col" xs={24} xl={14}>
           <div className="stackChart" ref={stackChartRef}>图表5</div>
         </Col>
-        <Col className="col" sm={24} xl={10}>
+        <Col className="col" xs={24} xl={10}>
           <div className="pieChart" ref={pieChartRef}>图表6</div>
         </Col>
       </Row>
