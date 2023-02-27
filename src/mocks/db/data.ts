@@ -1,8 +1,17 @@
 import Mock from 'mockjs';
 const Random = Mock.Random;
 
+export interface IData {
+    id: number,
+    name: string,
+    age: number,
+    address: string,
+    phoneNumber: string,
+    job: string
+}
+
 export default () => {
-    const data = [];
+    const data:IData[] = [];
     const jobs = ['前端工程师', '数据分析师', '测试工程师', '后端工程师', '产品经理', 'UI设计师'];
 
     for (let i = 0; i < 20; i++) {

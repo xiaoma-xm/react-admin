@@ -1,68 +1,79 @@
-import { useState, useEffect } from 'react';
-import { Table, Button, Input, Space, Tag } from "antd";
+import { useState, useEffect, useMemo } from 'react';
+import { Table, Button, Input, Space, Popconfirm } from "antd";
 import type { ColumnsType } from 'antd/es/table';
 import { DataWrapper } from "./styled";
 import { getData } from '@/api/data';
+import type { IData } from '@/mocks/db/data';
 const { Search } = Input;
 
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-  profession: string
-}
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: '序号',
-    dataIndex: 'id',
-    key: 'id',
-    render: (id) => {
-      return id + 1;
-    }
-  },
-  {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: '年龄',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: '居住住址',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: '手机号码',
-    key: 'phoneNumber',
-    dataIndex: 'phoneNumber'
-  },
-  {
-    title: '职业',
-    key: 'job',
-    dataIndex: 'job'
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <Button>更新</Button>
-        <Button danger>删除</Button>
-      </Space>
-    ),
-  },
-];
-
 function Data() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IData[]>([]);
+
+  // 删除员工
+  const delData = (key: string) => {
+    const newData = [...data];
+    const index = newData.findIndex(val => val.name === key);
+    newData.splice(index, 1);
+    setData(newData);
+  };
+
+  const columns = useMemo(() => {
+    const columns: ColumnsType<IData> = [
+      {
+        title: '序号',
+        dataIndex: 'id',
+        key: 'id',
+        render: (id) => {
+          return id + 1;
+        }
+      },
+      {
+        title: '姓名',
+        dataIndex: 'name',
+        key: 'name',
+        render: (text) => <a>{text}</a>,
+      },
+      {
+        title: '年龄',
+        dataIndex: 'age',
+        key: 'age',
+      },
+      {
+        title: '居住住址',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: '手机号码',
+        key: 'phoneNumber',
+        dataIndex: 'phoneNumber'
+      },
+      {
+        title: '职业',
+        key: 'job',
+        dataIndex: 'job'
+      },
+      {
+        title: 'Action',
+        key: 'action',
+        render: (_, val, id) => (
+          <Space size="middle">
+            <Button>更新</Button>
+            <Popconfirm
+              placement="bottomRight"
+              title={'你确定要删除' + val.name +'吗？'}
+              onConfirm={() => delData(val.name)}
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
+          </Space>
+        ),
+      },
+    ];
+    return columns;
+  }, [data]);
 
   useEffect(() => {
     getData().then(res => {
