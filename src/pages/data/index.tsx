@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, FormEvent } from 'react';
 import { Table, Button, Input, Space, Popconfirm } from "antd";
 import type { ColumnsType } from 'antd/es/table';
 import { DataWrapper } from "./styled";
@@ -6,8 +6,16 @@ import { getData } from '@/api/data';
 import type { IData } from '@/mocks/db/data';
 const { Search } = Input;
 
+let staticData: IData[]; // 作为查找用户的基础数据，不会改变
 function Data() {
   const [data, setData] = useState<IData[]>([]);
+
+  // 查找员工
+  const searchData = (e: FormEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
+    const searchData = staticData.filter(val => val.name.includes(value));
+    setData(searchData);
+  };
 
   // 删除员工
   const delData = (key: string) => {
@@ -61,7 +69,7 @@ function Data() {
             <Button>更新</Button>
             <Popconfirm
               placement="bottomRight"
-              title={'你确定要删除' + val.name +'吗？'}
+              title={'你确定要删除' + val.name + '吗？'}
               onConfirm={() => delData(val.name)}
               okText="确定"
               cancelText="取消"
@@ -78,6 +86,7 @@ function Data() {
   useEffect(() => {
     getData().then(res => {
       setData(res.data);
+      staticData = res.data;
     }).catch(err => {
       console.log(err);
     });
@@ -85,7 +94,7 @@ function Data() {
   return (
     <DataWrapper>
       <div className="addPerson">
-        <Search style={{ width: 200 }} placeholder="查找员工..." enterButton />
+        <Search style={{ width: 200 }} placeholder="输入姓名查找员工..." enterButton onInput={(e) => searchData(e)} />
         <Button type="primary">增加员工</Button>
       </div>
       <Table rowKey={'id'} columns={columns} dataSource={data} bordered pagination={{ pageSize: 5 }} />
