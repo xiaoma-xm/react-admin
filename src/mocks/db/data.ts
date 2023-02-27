@@ -2,7 +2,7 @@ import Mock from 'mockjs';
 const Random = Mock.Random;
 
 export interface IData {
-    id: number,
+    id: string,
     name: string,
     age: number,
     address: string,
@@ -21,7 +21,7 @@ export default () => {
         });
 
         data.push({
-            id: i,
+            id: Math.random().toString(36).slice(3),
             name: Random.cname(),
             age: Random.integer(18, 60),
             address: Random.county(true),
